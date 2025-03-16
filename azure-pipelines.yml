@@ -1,17 +1,4 @@
-trigger:
-- main  # Runs when code is pushed to the main branch
-
-stages:
-- stage: Build
-  jobs:
-  - job: BuildJob
-    steps:
-    - script: echo "Building the application"
-    - script: echo "Running unit tests"
-
-- stage: Deploy
-  dependsOn: Build  # Ensures Deploy runs only after Build is completed
-  jobs:
-  - job: DeployJob
-    steps:
-    - script: echo "Deploying the application"
+trigger: none
+pool:
+  vmImage: 'ubuntu-latest'
+steps: []
