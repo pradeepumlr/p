@@ -1,3 +1,26 @@
+trigger: none
+
 pool:
-  name: Default  # Change this to your agent pool name
-  steps: []
+  name: Default  # Replace 'Default' with your self-hosted agent pool name
+
+stages:
+- stage: Build  # First stage (has no dependencies)
+  jobs:
+  - job: Job1
+    steps:
+    - script: echo "Running Job 1 on Self-Hosted Agent"
+
+- stage: Test
+  dependsOn: Build  # Ensures Test runs after Build
+  jobs:
+  - job: Job2
+    steps:
+    - script: echo "Running Job 2"
+
+- stage: Deploy
+  dependsOn: Test  # Ensures Deploy runs after Test
+  jobs:
+  - job: Job3
+    steps:
+    - script: echo "Running Job 3"
+
